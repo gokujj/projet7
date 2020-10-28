@@ -86,7 +86,7 @@ def remove_stop_words(sentence):
     """Removes common words from the sentence passed as an argument."""
     # Loading common words from the json file
     with open("data/fr.json") as jsonfile:
-        stop_words = set(json.load(jsonfile))  # set() speeds up the operator in
+        stop_words = set(json.load(jsonfile))  # set()speeds up the in operator
 
     final_sentence = []
     for word in sentence.split(" "):

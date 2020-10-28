@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}GrandpyBot | Home{% endblock %}
+
+{% block content %}
+
+{% block header %}
+<header class="header">
+    <img class="header__image" src="{{ url_for('static', filename='images/grandpy.jpg') }}" alt="Grandpy">
+    <h1 class="header__title">Bienvenue chez GrandPy</h1>
+    <h1 class="header__subtitle">Le papy qui répond à vos questions</h1>
+</header>
+{% endblock %}
+
+{% block main %}
+<main class="main">
+    <div id="chatbox" class="chatbox"></div>
+    <form id="chatbox-form" class="chatbox__form">
+        <input class="chatbox__input" type="text" name="question" placeholder="Pourrais-tu m'indiquer la Tour Eiffel ?">
+        <button class="chatbox__button" type="submit" class="">Envoyer</button>
+    </form>
+</main>
+{% endblock %}
+
+{% block footer %}
+<footer class="footer">
+    <div class="footer__name">&copy; 2020, Gokhan Boyraz</div>
+    <div class="footer__icons">
+        <a href="https://github.com/gokujj"><i class="fab fa-github"></i></a>
+    </div>
+</footer>
+{% endblock %}
+{% endblock %}

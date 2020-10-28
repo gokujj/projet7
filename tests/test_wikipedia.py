@@ -80,8 +80,8 @@ def page():
 
 @pytest.fixture
 def mock_get_geosearch(monkeypatch):
-    """Fixture remplacant la fonction requests.get par une imitation simulant
-    une recherche avec succès auprès de l'API de Wikipedia.
+    """Fixture replacing the requests.get function with an imitation simulating
+     a successful search of the Wikipedia API.
     """
 
     class MockRequestsResponse:
@@ -104,8 +104,8 @@ def mock_get_geosearch(monkeypatch):
 
 @pytest.fixture
 def mock_get_geosearch_with_no_result(monkeypatch):
-    """Fixture remplacant la fonction requests.get par une imitation simulant
-    une recherche sans résultat auprès de l'API de Wikipedia.
+    """Fixture replacing the requests.get function with an imitation simulating
+     a search without results with the Wikipedia API.
     """
 
     class MockRequestsResponse:
@@ -128,8 +128,8 @@ def mock_get_geosearch_with_no_result(monkeypatch):
 
 @pytest.fixture
 def mock_get_geosearch_with_http_error(monkeypatch):
-    """Fixture remplacant la fonction requests.get par une imitation simulant
-    une recherche où raise_for_status() lève une requests.HTTPError.
+    """Fixture replacing the requests.get function with an imitation simulating
+     a search where raise_for_status () throws a requests.HTTPError.
     """
 
     class MockRequestsResponse:
@@ -154,9 +154,9 @@ def mock_get_geosearch_with_http_error(monkeypatch):
 
 @pytest.fixture
 def mock_get_geosearch_with_connection_error(monkeypatch):
-    """Fixture remplacant la fonction requests.get par une imitation simulant
-    une recherche auprès de l'API de Wikipedia levant une
-    requests.ConnectionError.
+    """Fixture replacing the requests.get function with an imitation simulating
+     a search with the Wikipedia API raising a
+     requests.ConnectionError.
     """
 
     def mock_requests_get(url, params):
@@ -170,8 +170,8 @@ def mock_get_geosearch_with_connection_error(monkeypatch):
 
 @pytest.fixture
 def mock_get_page(monkeypatch):
-    """Fixture remplacant la fonction requests.get par une imitation simulant
-    une recherche avec succès auprès de l'API de Wikipedia Extracts.
+    """Fixture replacing the requests.get function with an imitation simulating
+     a successful search of the Wikipedia Extracts API.
     """
 
     class MockRequestsResponse:
@@ -194,8 +194,8 @@ def mock_get_page(monkeypatch):
 
 @pytest.fixture
 def mock_get_page_not_found(monkeypatch):
-    """Fixture remplacant la fonction requests.get par une imitation simulant
-    une recherche auprès de l'API de Wikipedia Extracts sans résultat.
+    """Fixture replacing the requests.get function with an imitation simulating
+     a search of the Wikipedia Extracts API with no results.
     """
 
     class MockRequestsResponse:

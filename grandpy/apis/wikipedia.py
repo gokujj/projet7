@@ -1,4 +1,5 @@
 """Module responsible for implementing an interface for the Wikipedia API."""
+
 import requests
 
 
@@ -16,7 +17,7 @@ class WikipediaInvalidGPSCoordinates(WikipediaError):
 
 class WikipediaClient:
     """Represents a client to search the API
-     REST from Wikipedia.
+     Wikipedia REST.
     """
 
     def __init__(self, lang="fr"):
@@ -72,11 +73,11 @@ class WikipediaClient:
 
 class WikipediaPage:
     """Represents a wikipedia page from which you can consult
-    the title, the summary, the url.
+     the title, the summary, the url.
     """
 
     def __init__(self, page_id, lang="fr"):
-        """Initializes a new wikipedia page."""
+        """Initialize a new wikipedia page."""
         self.lang = lang
         if lang not in ("fr", "en", "de"):
             raise ValueError("The lang arg must be in ('fr', 'en', 'de')")
@@ -109,7 +110,7 @@ class WikipediaPage:
             raise WikipediaError(
                 "A Connection error occured when contacting the wikipedia API."
             )
-        # Recovery of received data
+        # Récupération des données reçues
         data = response.json()
         if "missing" in data["query"]["pages"][str(self.id)]:
             raise WikipediaNothingFound("No data has been found.")

@@ -6,10 +6,10 @@ from grandpy.apis.wikipedia import WikipediaClient, WikipediaError
 
 
 positive_answers = [
-    "Bien sûr mon poussin ! Voici ce que tu cherches :",
-    "J'ai trouvé ce que tu cherches ! Voici les infos qui t'intéressent :",
-    "Je savais que je connaissais cet endroit ! Voici ce que j'en sais :",
-    "C'est bien parce que c'est toi ! Voici ce l'adresse :",
+    "Bien sûr mon poussin ! Voici ce que tu cherches : ",
+    "J'ai trouvé ce que tu cherches ! Voici les infos qui t'intéressent : ",
+    "Je savais que je connaissais cet endroit ! Voici ce que j'en sais : ",
+    "C'est bien parce que c'est toi ! Voici ce l'adresse : ",
 ]
 
 negative_answers = [
@@ -27,12 +27,12 @@ article_intros = [
 
 
 def answer(question):
-    """Answer the question passed as an argument in a conversational mode."""
+    """Réponds à la question passé en argument sur un mode conversationnel."""
     parser = Parser()
     google_client = GoogleGeocodingClient()
     wikipedia_client = WikipediaClient()
 
-    # Utilisation du parser et des clients d'APIs
+    # Using the parser and API clients
     try:
         cleaned_question = parser.parse(question)
         geo_info = google_client.search(cleaned_question)
@@ -40,11 +40,16 @@ def answer(question):
             latitude=geo_info["latitude"], longitude=geo_info["longitude"]
         )
     except (GoogleGeocodingError, WikipediaError):
-        return {"found": False, "answer": random.choice(negative_answers)}
+        return {
+            "found": False,
+            "question": question.strip(),
+            "answer": random.choice(negative_answers),
+        }
 
-    # Préparation de la réponse
+    # Preparing the response
     return {
         "found": True,
+        "question": question.strip(),
         "answer": random.choice(positive_answers),
         "intro": random.choice(article_intros),
         **geo_info,

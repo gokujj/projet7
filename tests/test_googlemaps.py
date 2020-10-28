@@ -12,7 +12,7 @@ GOOGLE_GEOCODING_SUCCESS_RESPONSE = {
                 'location': {'lat': 48.85837009999999, 'lng': 2.2944813},
             },
         }
-    ], Fixture creating a GoogleGeocodingClient client for each test.
+    ],
     'status': 'OK',
 }
 
@@ -54,7 +54,7 @@ def mock_get(monkeypatch):
 @pytest.fixture
 def mock_get_with_http_error(monkeypatch):
     """Fixture replacing requests.get function with an imitation
-    raising a request.HTTPError via raise_for_status."""
+     raising a request.HTTPError via raise_for_status."""
 
     class MockRequestsResponse:
         def raise_for_status(self):
@@ -79,7 +79,7 @@ def mock_get_with_http_error(monkeypatch):
 @pytest.fixture
 def mock_get_with_connection_error(monkeypatch):
     """Fixture replacing requests.get function with an imitation
-    raising a requests.ConnectionError."""
+     raising a requests.ConnectionError."""
 
     def mock_requests_get(url, params):
         raise requests.ConnectionError(
@@ -93,7 +93,7 @@ def mock_get_with_connection_error(monkeypatch):
 @pytest.fixture
 def mock_get_with_no_result(monkeypatch):
     """Fixture replacing requests.get function with an imitation
-    simulating an unsuccessful call to the API."""
+     simulating an unsuccessful call to the API."""
 
     class MockRequestsResponse:
         def raise_for_status(self):
@@ -196,3 +196,10 @@ class TestGoogleGeocodingClient:
     ):
         with pytest.raises(googlemaps.GoogleGeocodingNothingFoundError):
             result = client.search("tour eiffel")
+
+    def test_search_method_raises_custom_exception_if_address_is_empty(
+        self, client, mock_get
+    ):
+        with pytest.raises(googlemaps.GoogleGeocodingError):
+            client.search("")
+            client.search("   ")

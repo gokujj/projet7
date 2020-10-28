@@ -8,7 +8,7 @@ import requests
 
 class GoogleGeocodingError(Exception):
     """Exception thrown if an error occurs in the HTTP call to the API
-    Google geocoding.
+     Google geocoding.
     """
 
     pass
@@ -22,7 +22,7 @@ class GoogleGeocodingNothingFoundError(GoogleGeocodingError):
 
 class GoogleGeocodingClient:
     """Represents a client interface for researching
-    on the Google Geocoding API.
+     on the Google Geocoding API.
     """
 
     def __init__(self):
@@ -30,7 +30,9 @@ class GoogleGeocodingClient:
         self._key = os.getenv("GOOGLE_MAPS_GEOCODING_KEY")
 
     def search(self, address):
-        """Search for an address on the Google Maps Geocoding API."""
+        """Looks up an address on the Google Maps Geocoding API."""
+        if not address.strip():
+            raise GoogleGeocodingError("address cannot be an empty string.")
         try:
             response = requests.get(
                 url=self._url, params={"address": address, "key": self._key}
@@ -42,7 +44,7 @@ class GoogleGeocodingClient:
                 "An HTTP error occured in google geocoding API call."
             )
         data = response.json()
-        # On vérifie qu'il existe des résultats
+        # We check that there are results
         if data['status'] == 'ZERO_RESULTS':
             raise GoogleGeocodingNothingFoundError(
                 "No result found for the current address"
