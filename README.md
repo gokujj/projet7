@@ -24,8 +24,13 @@ The application can be installed by following the following steps:
 
 ## .env examples
 
-`GOOGLEMAPS_GEOCODING_KEY = your api`
-`GOOGLEMAPS_JAVASCRIPT_KEY = your api`
+GOOGLEMAPS_GEOCODING_KEY = your api
 
-`FLASK_APP = website`
-`FLASK_ENV = development`
+
+GOOGLEMAPS_JAVASCRIPT_KEY = your api
+
+
+FLASK_APP = website
+
+
+FLASK_ENV = development
